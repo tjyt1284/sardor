@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>tj said shop</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
+        body {
+            font-family: 'Orbitron', 'Montserrat', 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+            color: #e0eaff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            animation: bgFadeIn 1.2s;
+        }
+        @keyframes bgFadeIn {
+            from { filter: blur(10px) brightness(0.7); }
+            to { filter: blur(0) brightness(1); }
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 60% 20%, #00f0ff55 0%, #1a237e00 80%),
+                        radial-gradient(ellipse at 20% 80%, #7c4dff33 0%, #0f202700 80%),
+                        url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+            opacity: 0.22;
+            z-index: 0;
+            pointer-events: none;
+            animation: bgZoom 2.5s cubic-bezier(.4,1.6,.4,1) 1;
+        }
+        @keyframes bgZoom {
+            from { transform: scale(1.08); opacity: 0; }
+            to { transform: scale(1); opacity: 0.22; }
+        }
+        header {
+            background: linear-gradient(90deg, #0f2027 0%, #2c5364 100%);
+            color: #00f0ff;
+            padding: 38px 0 22px 0;
+            text-align: center;
+            box-shadow: 0 8px 32px #00f0ff33, 0 2px 0 #7c4dff;
+            border-radius: 0 0 36px 36px;
+            position: relative;
+            animation: fadeInUp 1.1s cubic-bezier(.4,1.6,.4,1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3.2em;
+            letter-spacing: 2.5px;
+            text-shadow: 0 0 18px #00f0ff, 0 0 24px #7c4dff, 0 0 8px #fff;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: fadeInUp 1.3s cubic-bezier(.4,1.6,.4,1);
+        }
+        .container {
+            width: 95%;
+            max-width: 1300px;
+            margin: 32px auto 24px auto;
+            padding: 32px 28px 28px 28px;
+            background: rgba(20,24,40,0.98);
+            border-radius: 22px;
+            box-shadow: 0 12px 40px 0 #00f0ff33, 0 2px 0 #7c4dff;
+            position: relative;
+            z-index: 1;
+            animation: containerIn 1.1s cubic-bezier(.4,1.6,.4,1);
+        }
+        @keyframes containerIn {
+            from { opacity: 0; transform: translateY(40px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        h2 {
+            text-align: center;
+            color: #00f0ff;
+            margin-bottom: 38px;
+            font-size: 2.1em;
+            letter-spacing: 1px;
+            text-shadow: 0 0 12px #00f0ff, 0 0 8px #7c4dff;
+        }
+        .diamond-packages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 32px;
+        }
+        .package-item {
+            border: 2.5px solid #00f0ff;
+            border-radius: 18px;
+            padding: 22px 12px 24px 12px;
+            text-align: center;
+            background: linear-gradient(120deg, #181c2b 60%, #232b3e 120%);
+            box-shadow: 0 6px 24px #00f0ff33, 0 2px 0 #7c4dff;
+            transition: transform 0.33s cubic-bezier(.4,1.6,.4,1), box-shadow 0.33s cubic-bezier(.4,1.6,.4,1);
+            position: relative;
+            animation: cardIn 0.8s cubic-bezier(.4,1.6,.4,1);
+        }
+        @keyframes cardIn {
+            from { opacity: 0; transform: scale(0.95) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .package-item::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 7px;
+            background: linear-gradient(90deg, #00f0ff 0%, #7c4dff 100%);
+            border-radius: 18px 18px 0 0;
+            opacity: 0.8;
+            filter: blur(1.5px);
+        }
+        .package-item:hover {
+            transform: scale(1.06) rotate(-1.5deg);
+            box-shadow: 0 12px 40px 0 #7c4dffcc, 0 2px 0 #00f0ff;
+            z-index: 2;
+        }
+        .package-item img {
+            max-width: 100px;
+            height: 100px;
+            margin-bottom: 14px;
+            border-radius: 10px;
+            border: 2.5px solid #00f0ff;
+            background: #232b3e;
+            box-shadow: 0 2px 8px #00f0ff55;
+            animation: imgPop 1.1s cubic-bezier(.4,1.6,.4,1);
+        }
+        @keyframes imgPop {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .package-item h3 {
+            margin: 0 0 12px 0;
+            color: #00f0ff;
+            font-size: 1.35em;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 12px #00f0ff, 0 0 8px #7c4dff;
+            animation: fadeInUp 1.1s cubic-bezier(.4,1.6,.4,1);
+        }
+        .package-item p {
+            margin: 0 0 18px 0;
+            color: #e0eaff;
+            font-size: 1.35em;
+            font-weight: bold;
+            text-shadow: 0 0 8px #7c4dff;
+            animation: fadeInUp 1.2s cubic-bezier(.4,1.6,.4,1);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .package-item button {
+            background: linear-gradient(90deg, #00f0ff 0%, #7c4dff 100%);
+            color: #fff;
+            border: none;
+            border-radius: 9px;
+            padding: 14px 32px;
+            font-size: 1.15em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 12px #00f0ff55, 0 0 10px #7c4dff99;
+            transition: background 0.22s, box-shadow 0.22s, transform 0.22s;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            animation: fadeInUp 1.3s cubic-bezier(.4,1.6,.4,1);
+            text-shadow: 0 0 8px #00f0ff, 0 0 4px #7c4dff;
+        }
+        .package-item button:hover {
+            background: linear-gradient(90deg, #7c4dff 0%, #00f0ff 100%);
+            box-shadow: 0 8px 32px #00f0ffcc, 0 0 20px #7c4dffcc;
+            transform: scale(1.09);
+        }
+        /* Главное меню */
+        .main-nav {
+            width: 100%;
+            background: linear-gradient(90deg, #181c2b 0%, #232b3e 100%);
+            box-shadow: 0 4px 24px #00f0ff33;
+            position: sticky;
+            top: 0;
+            z-index: 1002;
+            border-radius: 0 0 18px 18px;
+            animation: fadeInUp 1.2s cubic-bezier(.4,1.6,.4,1);
+        }
+        .main-nav ul {
+            margin: 0;
+            padding: 0 0 0 32px;
+            display: flex;
+            list-style: none;
+            height: 54px;
+            align-items: center;
+        }
+        .main-nav li {
+            margin-right: 38px;
+        }
+        .main-nav a {
+            color: #00f0ff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.18em;
+            letter-spacing: 1.5px;
+            padding: 12px 12px 10px 12px;
+            border-bottom: 3px solid transparent;
+            border-radius: 0 0 8px 8px;
+            transition: color 0.22s, border-bottom 0.22s, background 0.22s;
+            text-shadow: 0 0 8px #00f0ff, 0 0 4px #7c4dff;
+        }
+        .main-nav a.active, .main-nav a:hover {
+            color: #fff;
+            border-bottom: 3px solid #00f0ff;
+            text-shadow: 0 0 16px #00f0ff, 0 0 8px #7c4dff;
+            background: rgba(0,240,255,0.08);
+        }
+        /* Меню для админов (отдельно, как главное меню) */
+        .admin-nav {
+            width: 100%;
+            background: linear-gradient(90deg, #181c2b 0%, #00f0ff 100%);
+            box-shadow: 0 4px 24px #00f0ff33;
+            position: sticky;
+            top: 54px;
+            z-index: 1001;
+            border-radius: 0 0 14px 14px;
+            animation: fadeInUp 1.3s cubic-bezier(.4,1.6,.4,1);
+        }
+        .admin-nav ul {
+            margin: 0;
+            padding: 0 0 0 32px;
+            display: flex;
+            list-style: none;
+            height: 48px;
+            align-items: center;
+        }
+        .admin-nav li {
+            margin-right: 32px;
+        }
+        .admin-nav a {
+            color: #7c4dff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.12em;
+            letter-spacing: 1.2px;
+            padding: 10px 12px 8px 12px;
+            border-bottom: 2.5px solid transparent;
+            border-radius: 0 0 8px 8px;
+            transition: color 0.22s, border-bottom 0.22s, background 0.22s;
+            text-shadow: 0 0 8px #7c4dff, 0 0 4px #00f0ff;
+        }
+        .admin-nav a:hover {
+            color: #fff;
+            border-bottom: 2.5px solid #7c4dff;
+            text-shadow: 0 0 16px #7c4dff, 0 0 8px #00f0ff;
+            background: rgba(124,77,255,0.08);
+        }
+        /* Модальные окна */
+        #modal, #payModal {
+            font-family: 'Orbitron', 'Montserrat', 'Arial', sans-serif;
+        }
+        #modal > div, #payModal > div {
+            background: linear-gradient(120deg, #181c2b 60%, #232b3e 120%);
+            color: #e0eaff;
+            border: 2px solid #00f0ff;
+            box-shadow: 0 4px 24px #00f0ff55;
+        }
+        #modal input {
+            background: #232b3e;
+            color: #00f0ff;
+            border: 1.5px solid #7c4dff;
+        }
+        #modal input:focus {
+            outline: 2px solid #00f0ff;
+        }
+        #modalMsg {
+            color: #00f0ff !important;
+        }
+        #sendIdBtn, #closePayBtn {
+            background: linear-gradient(90deg, #00f0ff 0%, #7c4dff 100%);
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            padding: 10px 24px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #00f0ff55, 0 0 8px #7c4dff99;
+            transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px #00f0ff, 0 0 4px #7c4dff;
+        }
+        #sendIdBtn:hover, #closePayBtn:hover {
+            background: linear-gradient(90deg, #7c4dff 0%, #00f0ff 100%);
+            box-shadow: 0 4px 16px #00f0ffcc, 0 0 16px #7c4dffcc;
+            transform: scale(1.07);
+        }
+        /* Модальное окно для пароля */
+        #adminPassModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        #adminPassModal > div {
+            background: #181c2b;
+            color: #e0eaff;
+            padding: 30px 20px;
+            border-radius: 10px;
+            max-width: 350px;
+            width: 90%;
+            box-shadow: 0 4px 16px #00f0ff55;
+            text-align: center;
+            position: relative;
+        }
+        #adminPassModal input {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1.5px solid #7c4dff;
+            border-radius: 5px;
+            font-size: 1em;
+            background: #232b3e;
+            color: #00f0ff;
+        }
+        #adminPassModal input:focus {
+            outline: 2px solid #00f0ff;
+        }
+        #adminPassMsg {
+            margin-top: 10px;
+            color: #7c4dff;
+            display: none;
+        }
+        #adminPassBtn {
+            background: linear-gradient(90deg, #00f0ff 0%, #7c4dff 100%);
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            padding: 10px 24px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #00f0ff55, 0 0 8px #7c4dff99;
+            transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px #00f0ff, 0 0 4px #7c4dff;
+        }
+        #adminPassBtn:hover {
+            background: linear-gradient(90deg, #7c4dff 0%, #00f0ff 100%);
+            box-shadow: 0 4px 16px #00f0ffcc, 0 0 16px #7c4dffcc;
+            transform: scale(1.07);
+        }
+        /* Анимация для модальных окон */
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes modalOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-20px); }
+        }
+        #modal, #payModal, #adminPassModal {
+            animation-duration: 0.4s;
+            animation-fill-mode: both;
+        }
+        #modal.show, #payModal.show, #adminPassModal.show {
+            animation-name: modalIn;
+        }
+        #modal.hide, #payModal.hide, #adminPassModal.hide {
+            animation-name: modalOut;
+        }
+        footer {
+            background: linear-gradient(90deg, #181c2b 0%, #232b3e 100%);
+            color: #e0eaff;
+            text-align: center;
+            padding: 22px 0 10px 0;
+            margin-top: 40px;
+            font-size: 1.1em;
+            letter-spacing: 0.5px;
+            border-top: 2px solid #00f0ff;
+            box-shadow: 0 -2px 12px #00f0ff55;
+        }
+        footer a {
+            color: #00f0ff;
+            text-decoration: underline;
+            font-weight: bold;
+            text-shadow: 0 0 8px #00f0ff;
+        }
+        footer a:hover {
+            color: #fff;
+            text-shadow: 0 0 16px #00f0ff;
+        }
+        @media (max-width: 700px) {
+            .main-nav ul, .admin-nav ul { flex-direction: column; height: auto; padding: 0; }
+            .main-nav li, .admin-nav li { margin: 0 0 8px 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Главное меню -->
+    <nav class="main-nav">
+      <ul>
+        <li style="font-size:1.35em; color:#00f0ff; font-family:'Orbitron',sans-serif; letter-spacing:2px; text-shadow:0 0 12px #00f0ff,0 0 8px #7c4dff; margin-right:48px; font-weight:900;">vazir shop</li>
+        <li><a href="#" class="active">Главная</a></li>
+      </ul>
+    </nav>
+    <!-- Меню для админов (отдельно, как главное меню) -->
+    <nav class="admin-nav">
+      <ul>
+       
+        <li><a href="#orders">Заказы</a></li>
+       
+      </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Выберите пакет алмазов</h2>
+        <div class="diamond-packages">
+            <!-- Пример одного пакета -->
+            <div class="package-item">
+                <h3>100 алмазов</h3>
+                <p>Цена: 12см</p>
+                <button>Купить</button>
+            </div>
+            <!-- Повторите этот блок для других пакетов -->
+            <div class="package-item">
+                
+                <h3>310 Алмазов</h3>
+                <p>Цена: 35см</p>
+                <button>Купить</button>
+            </div>
+            <div class="package-item">
+                
+                <h3>520 Алмазов</h3>
+                <p>Цена: 65см</p>
+                <button>Купить</button>
+            </div>
+            <div class="package-item">
+                
+                <h3>1060 Алмазов</h3>
+                <p>Цена: 130 см</p>
+                <button>Купить</button>
+            </div>
+            <div class="package-item">
+               
+                <h3>2180 Алмазов</h3>
+                <p>Цена: 250см</p>
+                <button>Купить</button>
+            </div>
+            <div class="package-item">
+                
+                <h3>5600 Алмазов</h3>
+                <p>Цена: 700см</p>
+                <button>Купить</button>
+            </div>
+            <div class="package-item">
+               
+                <h3>Ваучер на неделю</h3>
+                <p>Цена: 23см</p> <!-- Примерная цена -->
+                <button>Купить</button>
+            </div>
+            <div class="package-item">
+                
+                <h3>Ваучер на месяц</h3>
+                <p>Цена: 120см</p> <!-- Примерная цена -->
+                <button>Купить</button>
+            </div>
+<div class="package-item">
+                
+                <h3>Пропуск прокачки</h3>
+                <p>Цена: 36см</p> <!-- Примерная цена -->
+                <button>Купить</button>
+            </div>
+            <div class="package-item">
+                
+                <h3>Значок E (3 дня)</h3>
+                <p>Цена: 6 см</p> <!-- Примерная цена -->
+                <button>Купить</button>
+            </div>
+            <div class="package-item">
+               
+                <h3>Значок E (7 дней)</h3>
+                <p>Цена: 12см</p> <!-- Примерная цена -->
+                <button>Купить</button>
+            </div>
+            <div class="package-item">
+               
+                <h3>Значок E (30 дней)</h3>
+                <p>Цена: 36см</p> <!-- Примерная цена -->
+                <button>Купить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Меню заказов для админа -->
+    <div id="ordersMenu" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:3000; justify-content:center; align-items:flex-start; overflow:auto;">
+      <div style="background:#232323; color:#fff; padding:32px 20px 24px 20px; border-radius:14px; max-width:420px; width:95%; margin:40px auto; box-shadow:0 4px 32px #e5393555; position:relative;">
+        <button id="closeOrdersMenu" style="position:absolute; top:10px; right:15px; background:none; border:none; font-size:1.5em; color:#e53935; cursor:pointer;">&times;</button>
+        <h2 style="color:#ffb300; margin-bottom:18px;">Список заказов (ID)</h2>
+        <div id="ordersList" style="max-height:350px; overflow-y:auto; background:#181818; border-radius:8px; padding:10px 8px; border:1.5px solid #ffb300; font-size:1.1em;"></div>
+        <button id="clearOrdersBtn" style="margin-top:18px; background:linear-gradient(90deg,#e53935 0%,#ffb300 100%); color:#fff; border:none; border-radius:7px; padding:10px 24px; font-size:1em; font-weight:bold; cursor:pointer;">Очистить список</button>
+      </div>
+    </div>
+    <!-- Модальное окно для увеличенного изображения чека -->
+    <div id="imgModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:4000; justify-content:center; align-items:center;">
+      <img id="imgModalImg" src="" alt="Чек" style="max-width:90vw; max-height:90vh; border-radius:12px; border:3px solid #ffb300; box-shadow:0 8px 32px #e53935cc; background:#232323;">
+    </div>
+
+    <!-- Модальное окно для ввода игрового ID -->
+    <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center;">
+      <div style="background:#fff; padding:30px 20px; border-radius:10px; max-width:350px; width:90%; box-shadow:0 4px 16px rgba(0,0,0,0.2); text-align:center; position:relative;">
+        <button id="closeModal" style="position:absolute; top:10px; right:15px; background:none; border:none; font-size:1.5em; color:#e53935; cursor:pointer;">&times;</button>
+        <h2 style="color:#e53935; margin-bottom:15px;">Введите игровой ID</h2>
+        <input id="gameIdInput" type="text" placeholder="Ваш игровой ID" style="width:90%; padding:10px; margin-bottom:15px; border:1px solid #ccc; border-radius:5px; font-size:1em;">
+        <br>
+        <button id="sendIdBtn" style="background:#4caf50; color:#fff; border:none; border-radius:5px; padding:10px 20px; font-size:1em; cursor:pointer;">Отправить</button>
+        <div id="modalMsg" style="margin-top:10px; color:#388e3c; display:none;"></div>
+      </div>
+    </div>
+
+    <!-- Модальное окно для оплаты -->
+    <div id="payModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:1100; justify-content:center; align-items:center;">
+      <div style="background:#fff; padding:30px 20px; border-radius:10px; max-width:350px; width:90%; box-shadow:0 4px 16px rgba(0,0,0,0.2); text-align:center; position:relative;">
+        <button id="closePayModal" style="position:absolute; top:10px; right:15px; background:none; border:none; font-size:1.5em; color:#e53935; cursor:pointer;">&times;</button>
+        <h2 style="color:#e53935; margin-bottom:15px;">Оплата</h2>
+        <div style="font-size:1.1em; margin-bottom:10px; color:#ffb300;">Спасибо! Ваш ID отправлен.</div>
+        <div style="margin-bottom:15px; color:#ffb300;">Оплатите на номер:<br><b style="color:#e53935; font-size:1.3em;">928001558</b><br><span style="color:#388e3c; font-size:1em; font-weight:bold;">Душанбе сити</span></div>
+        <div style="margin-bottom:10px; color:#e53935; font-weight:bold;">Отправьте чек оплаты</div>
+        <label for="paymentScreenshot" id="uploadLabel" style="display:inline-block; background:linear-gradient(90deg,#ffb300 0%,#e53935 100%); color:#fff; border:none; border-radius:7px; padding:10px 24px; font-size:1em; font-weight:bold; cursor:pointer; box-shadow:0 2px 8px #e5393555, 0 0 8px #ffb30099; transition:background 0.2s,box-shadow 0.2s,transform 0.2s; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px;">
+          <span style="vertical-align:middle; display:inline-block; margin-right:8px; font-size:1.2em;">📷</span>Загрузить изображение
+        </label>
+        <input type="file" id="paymentScreenshot" accept="image/*" style="display:none;" />
+        <div id="screenshotPreview" style="display:none; margin-bottom:10px;"></div>
+        <button id="closePayBtn" style="background:#4caf50; color:#fff; border:none; border-radius:5px; padding:10px 20px; font-size:1em; cursor:pointer;">Закрыть</button>
+      </div>
+    </div>
+
+    <!-- Модальное окно для пароля -->
+    <div id="adminPassModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:2000; justify-content:center; align-items:center;">
+      <div style="background:#232323; color:#fff; padding:30px 20px; border-radius:10px; max-width:350px; width:90%; box-shadow:0 4px 16px #e5393555; text-align:center; position:relative;">
+        <button id="closeAdminPassModal" style="position:absolute; top:10px; right:15px; background:none; border:none; font-size:1.5em; color:#e53935; cursor:pointer;">&times;</button>
+        <h2 style="color:#ffb300; margin-bottom:15px;">Введите пароль администратора</h2>
+        <input id="adminPassInput" type="password" placeholder="Пароль" style="width:90%; padding:10px; margin-bottom:15px; border:1.5px solid #ffb300; border-radius:5px; font-size:1em;">
+        <br>
+        <button id="adminPassBtn" style="background:linear-gradient(90deg,#ffb300 0%,#e53935 100%); color:#fff; border:none; border-radius:7px; padding:10px 24px; font-size:1em; font-weight:bold; cursor:pointer;">Войти</button>
+        <div id="adminPassMsg" style="margin-top:10px; color:#e53935; display:none;"></div>
+      </div>
+    </div>
+
+    <script>
+      // Открытие модального окна при нажатии на любую кнопку "Купить"
+      document.querySelectorAll('.package-item button').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.getElementById('modal').style.display = 'flex';
+          document.getElementById('gameIdInput').value = '';
+          document.getElementById('modalMsg').style.display = 'none';
+          // Помечаем, что именно эту кнопку нажали
+          document.querySelectorAll('.package-item button').forEach(b => b._clicked = false);
+          btn._clicked = true;
+        });
+      });
+      // Закрытие модального окна
+      document.getElementById('closeModal').onclick = function() {
+        document.getElementById('modal').style.display = 'none';
+      };
+      // Отправка ID (здесь просто выводим сообщение, можно доработать)
+      document.getElementById('sendIdBtn').onclick = function() {
+        const id = document.getElementById('gameIdInput').value.trim();
+        if (id.length < 3) {
+          document.getElementById('modalMsg').style.display = 'block';
+          document.getElementById('modalMsg').style.color = '#e53935';
+          document.getElementById('modalMsg').textContent = 'Пожалуйста, введите корректный ID!';
+          return;
+        }
+        // Определяем выбранный товар (название)
+        let selectedProduct = null;
+        document.querySelectorAll('.package-item button').forEach((btn, idx) => {
+          if (btn._clicked) {
+            const parent = btn.closest('.package-item');
+            const name = parent.querySelector('h3') ? parent.querySelector('h3').textContent : '';
+            selectedProduct = name;
+            btn._clicked = false;
+          }
+        });
+        // Сохраняем ID, дату и товар в localStorage
+        let ids = JSON.parse(localStorage.getItem('orders_ids') || '[]');
+        ids.push({id: id, date: new Date().toLocaleString(), product: selectedProduct});
+        localStorage.setItem('orders_ids', JSON.stringify(ids));
+        // Закрываем окно ввода ID и открываем окно оплаты
+        document.getElementById('modal').style.display = 'none';
+        document.getElementById('payModal').style.display = 'flex';
+      };
+      // Закрытие окна оплаты
+      document.getElementById('closePayModal').onclick = function() {
+        document.getElementById('payModal').style.display = 'none';
+      };
+      document.getElementById('closePayBtn').onclick = function() {
+        document.getElementById('payModal').style.display = 'none';
+      };
+      // Закрытие по клику вне окна
+      document.getElementById('modal').addEventListener('click', function(e) {
+        if (e.target === this) this.style.display = 'none';
+      });
+      // Закрытие по клику вне окна оплаты
+      document.getElementById('payModal').addEventListener('click', function(e) {
+        if (e.target === this) this.style.display = 'none';
+      });
+      // Admin menu password modal logic
+      document.querySelectorAll('.admin-nav a').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          document.getElementById('adminPassModal').style.display = 'flex';
+          document.getElementById('adminPassInput').value = '';
+          document.getElementById('adminPassMsg').style.display = 'none';
+          // Save the href to redirect after password
+          document.getElementById('adminPassBtn').setAttribute('data-href', this.getAttribute('href'));
+        });
+      });
+      document.getElementById('closeAdminPassModal').onclick = function() {
+        document.getElementById('adminPassModal').style.display = 'none';
+      };
+      document.getElementById('adminPassBtn').onclick = function() {
+        const pass = document.getElementById('adminPassInput').value.trim();
+        const href = this.getAttribute('data-href');
+        if (pass === '14.02.2025') {
+          document.getElementById('adminPassModal').style.display = 'none';
+          if (href === '#orders') {
+            showOrdersMenu();
+            return;
+          }
+          if (href && href !== '#logout') window.location.hash = href;
+          if (href === '#logout') alert('Выход из админки!');
+        } else {
+          document.getElementById('adminPassMsg').style.display = 'block';
+          document.getElementById('adminPassMsg').textContent = 'Неверный пароль!';
+        }
+      };
+      document.getElementById('adminPassModal').addEventListener('click', function(e) {
+        if (e.target === this) this.style.display = 'none';
+      });
+      // --- Логика для меню заказов (ordersMenu) ---
+      function showOrdersMenu() {
+        const menu = document.getElementById('ordersMenu');
+        const listDiv = document.getElementById('ordersList');
+        let ids = JSON.parse(localStorage.getItem('orders_ids') || '[]');
+        if (ids.length === 0) {
+          listDiv.innerHTML = '<div style="color:#e53935;">Нет заказов.</div>';
+        } else {
+          let html = '<table style="width:100%; border-collapse:collapse;">';
+          html += '<tr><th style="color:#ffb300; text-align:left; padding:4px 0;">ID</th><th style="color:#ffb300; text-align:left; padding:4px 0;">Товар</th><th style="color:#ffb300; text-align:left; padding:4px 0;">Время</th><th style="color:#ffb300; text-align:left; padding:4px 0;">Чек</th></tr>';
+          ids.slice().reverse().forEach((item, idx) => {
+            html += `<tr><td style=\"padding:3px 0;\">${item.id}</td>`;
+            html += `<td style=\"padding:3px 0; color:#ffb300; font-weight:bold;\">${item.product ? item.product : '-'}</td>`;
+            html += `<td style=\"padding:3px 0; font-size:0.95em; color:#bbb;\">${item.date}</td><td style=\"padding:3px 0;\">`;
+            if (item.img) {
+              html += `<img src=\"${item.img}\" alt=\"Чек\" class=\"order-check-img\" data-img=\"${item.img}\" style=\"max-width:60px; max-height:60px; border-radius:6px; border:1.5px solid #ffb300; cursor:pointer; transition:box-shadow 0.2s;\">`;
+            } else {
+              html += '<span style=\"color:#888; font-size:0.95em;\">—</span>';
+            }
+            html += '</td></tr>';
+          });
+          html += '</table>';
+          listDiv.innerHTML = html;
+          // Навешиваем обработчик на все миниатюры чеков
+          document.querySelectorAll('.order-check-img').forEach(img => {
+            img.onclick = function() {
+              const modal = document.getElementById('imgModal');
+              const modalImg = document.getElementById('imgModalImg');
+              if (modal.style.display === 'flex' && modalImg.src === this.src) {
+                modal.style.display = 'none';
+              } else {
+                modalImg.src = this.getAttribute('data-img');
+                modal.style.display = 'flex';
+              }
+            };
+          });
+        }
+        menu.style.display = 'flex';
+      }
+      document.getElementById('closeOrdersMenu').onclick = function() {
+        document.getElementById('ordersMenu').style.display = 'none';
+      };
+      document.getElementById('ordersMenu').addEventListener('click', function(e) {
+        if (e.target === this) this.style.display = 'none';
+      });
+      document.getElementById('clearOrdersBtn').onclick = function() {
+        if (confirm('Очистить все заказы?')) {
+          localStorage.removeItem('orders_ids');
+          // Мгновенно обновляем интерфейс
+          document.getElementById('ordersList').innerHTML = '<div style="color:#e53935;">Нет заказов.</div>';
+        }
+      };
+      // --- Сохраняем изображение чека в localStorage вместе с ID ---
+      document.getElementById('paymentScreenshot').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const preview = document.getElementById('screenshotPreview');
+        if (file && file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = function(ev) {
+            preview.innerHTML = `<img src="${ev.target.result}" alt="Скриншот" style="max-width:100%; max-height:120px; border-radius:8px; border:1.5px solid #ffb300; margin-bottom:4px;" />`;
+            preview.style.display = 'block';
+            // Сохраняем base64 в последний заказ
+            let ids = JSON.parse(localStorage.getItem('orders_ids') || '[]');
+            if (ids.length > 0) {
+              ids[ids.length - 1].img = ev.target.result;
+              localStorage.setItem('orders_ids', JSON.stringify(ids));
+            }
+          };
+          reader.readAsDataURL(file);
+        } else {
+          preview.innerHTML = '';
+          preview.style.display = 'none';
+        }
+      });
+      // Добавляем анимацию наведения для кнопки загрузки
+      const uploadLabel = document.getElementById('uploadLabel');
+      if (uploadLabel) {
+        uploadLabel.addEventListener('mouseover', function() {
+          uploadLabel.style.background = 'linear-gradient(90deg,#e53935 0%,#ffb300 100%)';
+          uploadLabel.style.boxShadow = '0 4px 16px #ffb300cc, 0 0 16px #e53935cc';
+          uploadLabel.style.transform = 'scale(1.07)';
+        });
+        uploadLabel.addEventListener('mouseout', function() {
+          uploadLabel.style.background = 'linear-gradient(90deg,#ffb300 0%,#e53935 100%)';
+          uploadLabel.style.boxShadow = '0 2px 8px #e5393555, 0 0 8px #ffb30099';
+          uploadLabel.style.transform = 'scale(1)';
+        });
+      }
+      // Закрытие увеличенного изображения по клику
+      const imgModal = document.getElementById('imgModal');
+      if (imgModal) {
+        imgModal.onclick = function() {
+          imgModal.style.display = 'none';
+        };
+      }
+    </script>
+
+    <footer>
+        <p>Для покупки или вопросов звоните или напишите на whatsapp: <a href="tel:+992907261159">+992 92 800 1558</a></p>
+        <p>&copy; 2025 Ваш Магазин Алмазов. Все права защищены.</p>
+    </footer>
+</body>
+</html>
